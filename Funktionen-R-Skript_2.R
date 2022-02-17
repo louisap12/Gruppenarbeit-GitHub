@@ -1,5 +1,7 @@
 dich_as_met <- function(x){
-  return(as.numeric(factor(x)))
+  name <- unique(x)
+  result <- x == name[which.min(nchar(name))]
+  return(as.numeric(result)
 }
 
 test2 <- sample(c("ja", "nein"), 20, replace = TRUE)
