@@ -7,12 +7,12 @@
 
 
 set.seed(12)
-# ich erg‰nze das Test-Data Frame um eine kategorielle Variable
+# ich erg√§nze das Test-Data Frame um eine kategorielle Variable
 
 k <- as.factor( sample( c("sehr gut","gut","schlecht"),20, replace=TRUE))
 k <- ordered( k , levels = c("schlecht", "gut", "sehr gut") )
 
-# ich erg‰nze das Test-Data Frame um eine kategorielle Variable
+# ich erg√§nze das Test-Data Frame um eine kategorielle Variable
 test <- data.frame( met = sample(1:100 , 20 ), 
                     kat = k,
                     dich = sample(0:1, 20, replace = TRUE))
@@ -32,6 +32,18 @@ sum_met <- function(x){
    }
 
 sum_met(test$met)
+
+# b)
+kat <- function(x){
+  Modalwert <- table(x)[table(x) == max(table(x))] ##Auspraegung mit dem hoechsten Wert
+  Maximum <- max(x) 
+  Minimum <- min(x)
+  Spannweite <- length(unique(x)) ##Anzahl der verschiedenen Auspraegungen der Variablen
+  uebersicht_kat <- list("Modalwert" = Modalwert, "Maximum" = Maximum, "Minimum" = Minimum, "Spannweite" = Spannweite) ##bringe Werte in eine Liste
+  return(uebersicht_kat) ##gibt die Liste aus
+}
+kat(test$kat)
+
 
 # d)
 met_dich <- function(x,y){
