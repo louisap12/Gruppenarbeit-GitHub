@@ -5,12 +5,19 @@
 # Datensatz zum ausprobieren:
 # zunaechst mit einer metrischen (hier jetzt erstmal nur natuerliche Zahlen) und einer kategoriellen Spalte
 
+
 set.seed(12)
 # ich ergänze das Test-Data Frame um eine kategorielle Variable
+
+k <- as.factor( sample( c("sehr gut","gut","schlecht"),20, replace=TRUE))
+k <- ordered( k , levels = c("schlecht", "gut", "sehr gut") )
+
+# ich ergänze das Test-Data Frame um eine kategorielle Variable
 test <- data.frame( met = sample(1:100 , 20 ), 
-                    kat = sample( c("sehr gut","gut","schlecht"),20, replace=TRUE),
+                    kat = k,
                     dich = sample(0:1, 20, replace = TRUE))
 test
+
 
 
 # a)
