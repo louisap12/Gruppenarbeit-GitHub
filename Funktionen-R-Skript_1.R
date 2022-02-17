@@ -35,7 +35,7 @@ sum_met(test$met)
 
 # b)
 kat <- function(x){
-  Modalwert <- table(x)[table(x) == max(table(x))] ##Auspraegung mit dem hoechsten Wert
+  Modalwert <- table(x)[table(x) == max(table(x))] ##Auspraegung, die am haeufigsten vorkommt
   Maximum <- max(x) 
   Minimum <- min(x)
   Spannweite <- length(unique(x)) ##Anzahl der verschiedenen Auspraegungen der Variablen
