@@ -45,6 +45,17 @@ kat <- function(x){
 kat(test$kat)
 
 
+# c)
+sum_kor <- function(x,y){
+  if( (is.factor(x) | is.factor(y)) != TRUE){ stop("Die Variablen muessen kategoriell sein.") }
+  if( length(x) != length(y) ){ stop("Beide Objekte muessen dieselbe Laenge haben.")}
+  kor <- cor( as.numeric(x), as.numeric(y) )
+  kov <- cov( as.numeric(x), as.numeric(y) )
+  return( list( Kovarianz = kov, Korrelation = kor) )
+}
+
+
+
 # d)
 met_dich <- function(x,y){
   # x soll die metrische Variable sein
@@ -56,6 +67,8 @@ met_dich <- function(x,y){
 
 met_dich(test$met, test$dich)
 
+
+=======
 # f)
 visual <- function(x){
   barplot(table(x),xlab = "Studienfach", ylab = "Häufigket", 
