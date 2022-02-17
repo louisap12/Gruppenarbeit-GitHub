@@ -44,6 +44,7 @@ kat <- function(x){
 }
 kat(test$kat)
 
+
 # c)
 sum_kor <- function(x,y){
   if( (is.factor(x) | is.factor(y)) != TRUE){ stop("Die Variablen muessen kategoriell sein.") }
