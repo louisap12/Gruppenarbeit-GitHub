@@ -35,7 +35,7 @@ sum_met(test$met)
 
 # b)
 kat <- function(x){
-  if(is.character){stop("Der Vektor ist nicht kategoriell")}
+  if(is.character){stop("Die Variable ist nicht kategoriell")}
   Modalwert <- names(table(x)[table(x) == max(table(x))]) ##Auspraegung, die am haeufigsten vorkommt
   Maximum <- max(x) 
   Minimum <- min(x)
