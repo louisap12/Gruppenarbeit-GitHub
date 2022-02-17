@@ -26,7 +26,13 @@ sum_met <- function(x){
 
 sum_met(test$met)
 
+# d)
+met_dich <- function(x,y){
+  # x soll die metrische Variable sein
+  # y soll die dichotome Variable sein
+  y <- dich_as_met(y)
+  return(list("Korrelation" = cor(x,y), "Kovarianz" = cov(x,y), 
+              "Lineares Modell" = lm(y~x)))
+}
 
-
-
-
+met_dich(test$met, test$dich)
