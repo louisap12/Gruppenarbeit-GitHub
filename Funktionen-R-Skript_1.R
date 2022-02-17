@@ -68,7 +68,10 @@ met_dich <- function(x,y){
 met_dich(test$met, test$dich)
 
 
-
-
-
-
+=======
+# f)
+visual <- function(x){
+  barplot(table(x),xlab = "Studienfach", ylab = "Häufigket", 
+       main = "Visualisierung des Studienfachs")
+}
+visual(x)
