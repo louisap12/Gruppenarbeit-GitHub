@@ -37,6 +37,8 @@ sum_met(test$met)
 
 
 # b)
+# Funktion die geeignete deskriptive Statistiken fuer kategorielle Variablen ausgibt:
+
 kat <- function(x){
   if(is.character){stop("Die Variable ist nicht kategoriell")}
   Modalwert <- names(table(x)[table(x) == max(table(x))]) ##Auspraegung, die am haeufigsten vorkommt
@@ -69,6 +71,9 @@ kat_zsh( p, test$kat)
 
 
 # d)
+# Funktion die geeignete deskriptive Statistiken fuer den Zusammenhang von einer metrischen
+# und einer dichotomen Variable ausgibt:
+
 met_dich <- function(x,y){
   # x soll die metrische Variable sein
   # y soll die dichotome Variable sein
@@ -82,7 +87,9 @@ met_dich <- function(x,y){
 met_dich(test$met, test$dich)
 met_dich(test$met, test$kat)
 
+
 # e)
+# Funktion zurquantilbasierten Katergorisierung einer mindestens ordinal skalierten Variable: 
 
 qkat <- function(x){
   if (is.numeric(x) == TRUE) {
@@ -111,6 +118,8 @@ qkat(test$dich)
 
 
 # f)
+# Funktion zur geeigneten Visualisierug von drei oder vier kategoriellen Variablen:
+
 visual <- function(x){
   barplot(table(x),xlab = "Studienfach", ylab = "Häufigkeit", 
        main = "Visualisierung des Studienfachs")
