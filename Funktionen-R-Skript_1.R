@@ -61,13 +61,15 @@ sum_kor <- function(x,y){
 met_dich <- function(x,y){
   # x soll die metrische Variable sein
   # y soll die dichotome Variable sein
+  if(!is.numeric(x)) stop("Der erste Vektor ist nicht metrisch")
+  if(length(levels(factor(y))) != 2) stop("Der zweite Vektor ist nicht dichotom")
   y <- dich_as_met(y)
   return(list("Korrelation" = cor(x,y), "Kovarianz" = cov(x,y), 
               "Lineares Modell" = lm(y~x)))
 }
 
 met_dich(test$met, test$dich)
-
+met_dich(test$met, test$kat)
 
 # e)
 
@@ -88,7 +90,7 @@ qkat <- function(x){
     return(l)
   }
   else{
-    return("Warnmeldung: Nicht möglich, da Variable nicht mindestens ordinalskaliert.")
+    stop("Nicht möglich, da Variable nicht mindestens ordinalskaliert.")
   }
 }
 
@@ -99,8 +101,7 @@ qkat(test$dich)
 
 # f)
 visual <- function(x){
-  barplot(table(x),xlab = "Studienfach", ylab = "HÃ¤ufigket", 
+  barplot(table(x),xlab = "Studienfach", ylab = "Häufigkeit", 
        main = "Visualisierung des Studienfachs")
 }
-visual(x)
 
