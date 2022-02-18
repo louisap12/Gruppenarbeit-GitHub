@@ -2,17 +2,15 @@
 ## zu Aufgabe 3
 
 
-# Datensatz zum ausprobieren:
-# zunaechst mit einer metrischen (hier jetzt erstmal nur natuerliche Zahlen) und einer kategoriellen Spalte
+# Datensatz zum Erproben der Funktionen:
 
-
+# Vorbereitungen fuer den Testdatensatz:
 set.seed(12)
-# ich ergänze das Test-Data Frame um eine kategorielle Variable
 
 k <- as.factor( sample( c("sehr gut","gut","schlecht"),20, replace=TRUE))
 k <- ordered( k , levels = c("schlecht", "gut", "sehr gut") )
 
-# ich ergänze das Test-Data Frame um eine kategorielle Variable
+# Zusammensetzung des Datensatzes:
 test <- data.frame( met = sample(1:100 , 20 ), 
                     kat = k,
                     dich = sample(0:1, 20, replace = TRUE))
@@ -21,17 +19,22 @@ test
 
 
 # a)
-sum_met <- function(x){
-   AM <- mean(x)
-   med <- median(x)
+# Funktion die geeignete deskriptive Statistiken fuer metrische Variablen ausgibt:
+
+sum_met <- function(x){ 
+  if( is.numeric(x) != TRUE){ stop("Die Variable muss metrisch skaliert sein.") } # Warnmeldung falls Variable
+   AM <- mean(x)                                                                  # nicht metrisch ist.
+   med <- median(x)    # Hier werden alle Statistiken berechnet.
    var <- var(x)
    sd <- sd(x)
    quartile <- quantile(x, probs= c(0.25,0.75) )
    return( list( "Arithmetische Mittel" = AM, "Median" = med, "Varianz" = var, "Standardabweichung" = sd,
-                 "Quartile"= quartile) )
+                 "Quartile"= quartile) )      # Alle benoetigten Groessen werden in einer Liste ausgegeben.
    }
 
+# Kleine Probe um Funktion zu testen:
 sum_met(test$met)
+
 
 # b)
 kat <- function(x){
@@ -47,14 +50,22 @@ kat(test$kat)
 
 
 # c)
-sum_kor <- function(x,y){
-  if( (is.factor(x) | is.factor(y)) != TRUE){ stop("Die Variablen muessen kategoriell sein.") }
+# Funktion zur Berechnung eines Zusammenhanges zwischen zwei kategoriellen Variablen:
+
+kat_zsh <- function(x,y){
+  # Zunaechst eine Bedingung, die die beiden Vektoren erfuellen sollen:
   if( length(x) != length(y) ){ stop("Beide Objekte muessen dieselbe Laenge haben.")}
   kor <- cor( as.numeric(x), as.numeric(y) )
   kov <- cov( as.numeric(x), as.numeric(y) )
-  return( list( Kovarianz = kov, Korrelation = kor) )
+  return( list( Kovarianz = kov, Korrelation = kor) )  # Ausgabe in einer Liste
 }
 
+# Weiteres Kategorielles Objekt zum testen:
+p <- as.factor( sample( c("super","mittel","miserabel"),20, replace=TRUE) )
+p <- ordered( p , levels = c("miserabel", "mittel", "super") )
+
+# Kleiner Testdurchlauf der Funktion.
+kat_zsh( p, test$kat)
 
 
 # d)
