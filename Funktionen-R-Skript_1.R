@@ -69,9 +69,38 @@ met_dich <- function(x,y){
 met_dich(test$met, test$dich)
 
 
+# e)
+
+qkat <- function(x){
+  if (is.numeric(x) == TRUE) {
+    n <- x[which( x <= quantile(x, 1/3))]
+    
+    m <- x
+    m <- m [which( ! m <= quantile(x, 1/3))]
+    m <- m [which( ! m >= quantile(x, 2/3))]
+    
+    h <- x[which( x >= quantile(x, 2/3))]  
+    
+    l <- list(n, m, h)
+    
+    names(l) <- c("niedrig", "mittel", "hoch")
+    
+    return(l)
+  }
+  else{
+    return("Warnmeldung: Nicht möglich, da Variable nicht mindestens ordinalskaliert.")
+  }
+}
+
+qkat(test$met)
+qkat(test$kat)
+qkat(test$dich)
+
+
 # f)
 visual <- function(x){
   barplot(table(x),xlab = "Studienfach", ylab = "HÃ¤ufigket", 
        main = "Visualisierung des Studienfachs")
 }
 visual(x)
+
