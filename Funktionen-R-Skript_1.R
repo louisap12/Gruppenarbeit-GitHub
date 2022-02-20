@@ -91,24 +91,30 @@ met_dich(test$met, test$kat)
 # e)
 # Funktion zurquantilbasierten Katergorisierung einer mindestens ordinal skalierten Variable: 
 
-qkat <- function(x){
-  if (is.numeric(x) == TRUE) {
+# (Vorraussetzung: Merkmalsauspraegungen numerisch oder als factor mit geordneten Levels )
+
+qkat <- function(y){
+  if ( (is.numeric(y) == TRUE) || (is.factor(y) == TRUE) )  {
+    
+    x <- as.numeric(y)
+    x
+    
     n <- x[which( x <= quantile(x, 1/3))]
     
     m <- x
     m <- m [which( ! m <= quantile(x, 1/3))]
-    m <- m [which( ! m >= quantile(x, 2/3))]
+    m <- m [which( ! m > quantile(x, 2/3))]
     
-    h <- x[which( x >= quantile(x, 2/3))]  
+    h <- x[which( x > quantile(x, 2/3))]  
     
     l <- list(n, m, h)
     
-    names(l) <- c("niedrig", "mittel", "hoch")
+    names(l) <- c("niedrig (<= 1/3-Quantil)", "mittel (1/3-Quantil < & <= 2/3-Quantil)", "hoch (2/3-Quantil <)")
     
     return(l)
   }
   else{
-    stop("Nicht möglich, da Variable nicht mindestens ordinalskaliert.")
+    stop("Nicht moeglich, da Variable nicht mindestens ordinalskaliert.")
   }
 }
 
