@@ -127,7 +127,24 @@ qkat(test$dich)
 # Funktion zur geeigneten Visualisierug von drei oder vier kategoriellen Variablen:
 
 visual <- function(x){
-  barplot(table(x),xlab = "Studienfach", ylab = "Häufigkeit", 
-       main = "Visualisierung des Studienfachs")
+    if( is.ordered(x) ){    # Falls x ordinale Variable ist wird zusaetzlich zum Barplot ein Boxplot erstellt
+      opt <- par( mfrow = c(1,2))
+      barplot(table(x),xlab = "Studienfach", ylab = "Häufigkeit", 
+              main = "Visualisierung des Studienfachs")
+     boxplot(x)
+     par(opt)
+    }
+    if( !is.ordered(x)){    # Falls x keine Rangordnung hat, wird lediglich ein Barplot erstellt
+    barplot(table(x),xlab = "Studienfach", ylab = "Häufigkeit", 
+            main = "Visualisierung des Studienfachs")
+    }
 }
+
+
+
+
+
+
+
+
 
