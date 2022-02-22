@@ -28,8 +28,9 @@ sum_met <- function(x){
    var <- var(x)
    sd <- sd(x)
    quartile <- quantile(x, probs= c(0.25,0.75) )
+   extrm <- c( Minimum = min (x), Maximum = max (x))
    return( list( "Arithmetische Mittel" = AM, "Median" = med, "Varianz" = var, "Standardabweichung" = sd,
-                 "Quartile"= quartile) )      # Alle benoetigten Groessen werden in einer Liste ausgegeben.
+                 "Quartile"= quartile, "Extremwerte" = extrm) )      # Alle benoetigten Groessen werden in einer Liste ausgegeben.
    }
 
 # Kleine Probe um Funktion zu testen:
