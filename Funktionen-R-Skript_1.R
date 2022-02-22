@@ -41,7 +41,7 @@ sum_met(test$met)
 # Funktion die geeignete deskriptive Statistiken fuer kategorielle Variablen ausgibt:
 
 kat <- function(x){
-  if(is.character){stop("Die Variable ist nicht kategoriell")}
+  if(is.character(x)){stop("Die Variable ist nicht kategoriell")}
   Modalwert <- names(table(x)[table(x) == max(table(x))]) ##Auspraegung, die am haeufigsten vorkommt
   Maximum <- max(x) 
   Minimum <- min(x)
