@@ -193,3 +193,60 @@ table(ma$`Mathe-LK`)      # Nahezu alle Studierende haben den Mathe-LK besucht.
 #            Besuchern und Nicht-Mathe-LK Besuchern eher ausgeglichen.
 
 
+# e) Funktion aus e):
+qkat <- function(y){
+  if ( (is.numeric(y) == TRUE) || (is.ordered(y) == TRUE) )  {
+    
+    x <- as.numeric(y)
+    x
+    
+    n <- x[which( x <= quantile(x, 1/3))]
+    
+    m <- x
+    m <- m [which( ! m <= quantile(x, 1/3))]
+    m <- m [which( ! m > quantile(x, 2/3))]
+    
+    h <- x[which( x > quantile(x, 2/3))]  
+    
+    l <- list(n, m, h)
+    
+    names(l) <- c("niedrig (<= 1/3-Quantil)", "mittel (1/3-Quantil < & <= 2/3-Quantil)", "hoch (2/3-Quantil <)")
+    
+    return(l)
+  }
+  else{
+    stop("Nicht moeglich, da Variable nicht mindestens ordinalskaliert.")
+  }
+}
+
+qkat(Datensatz$`Int. Mathe`)
+
+# Ausgabe:
+
+#$`niedrig (<= 1/3-Quantil)`
+#[1] 3 2 2 1 3 2 2 2 2 2 3 3 2 2 1 3 3 1 2 3 3 3 2 2 2 2 2 3 3 1
+#[31] 1 1 1 3 1 2 3 3 2 3 3
+
+#$`mittel (1/3-Quantil < & <= 2/3-Quantil)`
+#[1] 5 5 4 5 5 4 4 4 5 5 4 4 5 4 5 5 5 5 4 5 5 5 5 4 4 4 4 4 4 4
+#[31] 5 4
+
+#$`hoch (2/3-Quantil <)`
+#[1] 7 7 7 7 7 6 6 7 6 7 6 7 7 7 7 6 7 7 6 6 7 7 6 6 6 7 6
+
+
+# f) Funktion aus f):
+visual <- function(x,i){
+  p <- length(i)
+  q <- sqrt(p)
+  if(round(q)^2 == p)
+    par(mfcol = c(q,q))
+  else
+    par(mfcol=c(q,q+1))
+  for (u in 1:p) {
+    barplot(table(x[i[u]]), xlab = colnames(Datensatz)[i[u]],
+            ylab = "abs. Häufigkeit" ,main = "Visualisierung")
+  }
+}
+
+visual(Datensatz,3:6)
