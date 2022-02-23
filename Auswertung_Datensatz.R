@@ -445,3 +445,70 @@ visual(Datensatz,3:6)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+####################################################################################################
+# Zusammmenfassung:
+####################################################################################################
+
+# (1) Alter:
+#  Die Individuen des Datensatzes (Studenten) haben im Mittel (Median) ein Alter von 25
+#  Jahren und unterschreiten/ueberschrieten das Alter von 19 bzw. 30 nicht.
+
+#  Das Alter ist nahzu normalverteilt um 25 Jahre. Lediglich im Bereich 26 bis 27 liegen weniger
+#  Beobachtungen, als im Bereich unter 25 Jahre.
+
+
+# (2) Interesse Programmierung und Mathe
+
+#  Der hoechste/niedrigste Modalwert bezueglich des Mathe Interesse weisen Statistik/Informatik
+#  Studierende auf.
+#  Der hoechste/niedrigste Modalwert bezueglich des Interesse am Programmieren weisen
+#  Data Science/Mathe Studierende auf.
+
+#  Es gibt keine nennenswerten Korrelationen zwischen den Variablen Int.Mathe und Int.Prog, sowie
+#  des Alters und beiden Interessen.
+
+#  Da bei Int.Prog mehr Bewertungsstufen im niedrigen Bereich liegen, muessen im mittleren 
+#  und oberen Bereich haeufiger die Stufen 5 bis 6 gewaehlt worden sein, als bei Int.Mathe.
+#  Bei Int.Mathe verteilen sich die  Bewertungsstufen besser auf die Kategorien niedrig,
+#  mittel und hoch.
+
+#  Bei der Visualisierung der Daten wird bestaerkt : Beim Mathe-
+#  Interesse sind die Beobachtungen deutlich gleichmaessiger verteilt als beim Programmierungs-
+#  Interesse. Ledglich die Bewertungen 1 und 6 kommen etwas weniger haeufig vor.
+#  Beim Programmierungs-Interesse ist eine Tendez zur Linksschiefe erkennbar.
+#  Es leigen mehr Beobachtungen in Bereich der hoeheren Bewertungsstufen.
+
+
+
+# (3) Mathe-LK
+
+# In den Studienrichtungen Mathe und Statistik wird deutlich haeufiger der Mathe-LK besucht.
+# In den Studienrichtungen Informatik und Data Science ist das Verhaeltniss zu Mathe-LK
+# Besuchern und Nicht-Mathe-LK Besuchern eher ausgeglichen.
+
+# Zwischen dem Interesse in Programmierung und Mathe und dem Besuch des Mathe LK besteht nahezu
+# kein Zusammenhang ( Kovarianz und Korrelation sind nahe bei Null).
+
+
+
+# (4) Studiengaenge
+
+#  Bei den Studiengaengen sind Data Science,Statistik und Informatik nahezu gleich oft vertreten.
+#  Hingegen gibt es deutlich weniger Mathe Studenten ( etwa die Haelte vergleichen mit den obigen ).
+
+
+
+
