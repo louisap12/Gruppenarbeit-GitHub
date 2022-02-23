@@ -383,6 +383,35 @@ qkat(Datensatz$`Int. Mathe`)
 #[1] 7 7 7 7 7 6 6 7 6 7 6 7 7 7 7 6 7 7 6 6 7 7 6 6 6 7 6
 
 
+# Im nierdrigen Bereich liegen: 1,2,3
+# Im mittleren Bereich liegen: 4,5
+# Im hohen Bereich liegen: 6,7
+
+
+qkat(Datensatz$`Int. Prog.`)
+
+# $`niedrig (<= 1/3-Quantil)`
+# [1] 1 4 2 1 3 3 1 4 3 2 4 2 2 1 1 3 1 4 2 3 3 2 4 1 4 3 4 1 1 3 4 3 4 4 4 2 4 3 3 4 1 1 4 2
+
+# $`mittel (1/3-Quantil < & <= 2/3-Quantil)`
+# [1] 6 6 6 6 6 5 6 5 5 6 5 6 5 5 5 6 5 5 6 5 6 5 5 5 6 5 6 5 6 5 5 5 5 5 6 5 5 6 6 6 6
+
+# $`hoch (2/3-Quantil <)`
+# [1] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+
+# Im nierdrigen Bereich liegen: 1,2,3,4
+# Im mittleren Bereich liegen: 5,6
+# Im hohen Bereich liegen: 7
+
+
+# Fazit: (1) Da bei Int.Prog mehr Bewertungsstufen im niedrigen Bereich liegen, muessen im mittleren 
+#            und oberen Bereich haeufiger die Sufen 5 bis 6 gewaehlt worden sein, als bei Int.Mathe.
+#        (2) Bei Int.Mathe verteilen sich die  Bewertungsstufen besser auf die Kategorien niedrig,
+#            mittel und hoch.
+
+
+
+
 # Funktion aus f):
 visual <- function(x,i){
   p <- length(i)
@@ -398,3 +427,21 @@ visual <- function(x,i){
 }
 
 visual(Datensatz,3:6)
+
+# Das Alter ist nahzu normalverteilt um 25 Jahre. Lediglich im Bereich 26 bis 27 liegen weniger
+# Beobachtungen, als im Bereich unter 25 Jahre.
+
+
+# Bei den Studiengaengen sind Data Science,Statistik und Informatik nahezu gleich oft vertreten.
+# Hingegen gibt es deutlich weniger Mathe Studenten ( etwa die Haelte vergleichen mit den obigen ).
+
+
+# Hier bestaetigen sich bei der Verteilung der Bewertungsstufen die Erkenntnisse aus e). Beim Mathe-
+# Interesse sind die Beobachtungen deutlich gleichmaessiger verteilt als beim Programmierungs-
+# Interesse. Ledglich die Bewertungen 1 und 6 kommen etwas weniger haeufig vor.
+
+# Beim Programmierungs-Interesse ist eine Tendez zur Linksschiefe erkennbar.
+# Es leigen mehr Beobachtungen in Bereich der hoeheren Bewertungsstufen.
+
+
+
