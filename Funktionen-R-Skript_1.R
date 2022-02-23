@@ -128,8 +128,13 @@ qkat(test$dich)
 # f)
 # Funktion zur geeigneten Visualisierug von drei oder vier kategoriellen Variablen:
 
-visual <- function(x){
-  barplot(table(x),xlab = "Studienfach", ylab = "Häufigkeit", 
+visual <- function(x, y){
+  barplot(table(x),xlab = y, ylab = "Häufigkeit", 
        main = "Visualisierung des Studienfachs")
 }
+
+y <- "Bezeichunung der jeweils kategoriellen Variable"
+
+# Test bezueglich der Achsenbeschriftung:
+visual(test$met, y)
 
