@@ -197,6 +197,41 @@ table(ma$`Mathe-LK`)      # Nahezu alle Studierende haben den Mathe-LK besucht.
 
 
 
+# Funktion aus c)
+
+kat_zsh <- function(x,y){
+  # Zunaechst eine Bedingung, die die beiden Vektoren erfuellen sollen:
+  if( length(x) != length(y) ){ stop("Beide Objekte muessen dieselbe Laenge haben.")}
+  kor <- cor( as.numeric(x), as.numeric(y) )
+  kov <- cov( as.numeric(x), as.numeric(y) )
+  return( list( Kovarianz = kov, Korrelation = kor) )  # Ausgabe in einer Liste
+}
+
+kat_zsh(Datensatz$`Int. Prog.`, Datensatz$`Int. Mathe`)
+#$Kovarianz
+#[1] -0.3070707
+
+#$Korrelation
+#[1] -0.08523765
+
+kat_zsh(Datensatz$Alter, Datensatz$`Int. Mathe`)
+#$Kovarianz
+#[1] -0.6169697
+
+#$Korrelation
+#[1] -0.154403
+
+kat_zsh(Datensatz$Alter, Datensatz$`Int. Prog.`)
+#$Kovarianz
+#[1] 0.320202
+
+#$Korrelation
+#[1] 0.08056303
+
+
+
+
+
 
 # Funktion aus d) - Zusammenang zwischen Interesse an Mathe/Programmieren
 # und Mathe-LK
