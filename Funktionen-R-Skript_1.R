@@ -95,7 +95,7 @@ met_dich(test$met, test$kat)
 # (Vorraussetzung: Merkmalsauspraegungen numerisch oder als factor mit geordneten Levels )
 
 qkat <- function(y){
-  if ( (is.numeric(y) == TRUE) || (is.factor(y) == TRUE) )  {
+  if ( (is.numeric(y) == TRUE) || (is.ordered(y) == TRUE) )  {
     
     x <- as.numeric(y)
     x
@@ -119,6 +119,7 @@ qkat <- function(y){
   }
 }
 
+# Test mit Probedatensatz:
 qkat(test$met)
 qkat(test$kat)
 qkat(test$dich)
