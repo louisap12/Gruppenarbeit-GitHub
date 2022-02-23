@@ -193,7 +193,104 @@ table(ma$`Mathe-LK`)      # Nahezu alle Studierende haben den Mathe-LK besucht.
 #            Besuchern und Nicht-Mathe-LK Besuchern eher ausgeglichen.
 
 
-# e) Funktion aus e):
+
+
+
+
+
+# Funktion aus d) - Zusammenang zwischen Interesse an Mathe/Programmieren
+# und Mathe-LK
+
+# Interesse an Mathe und Programmieren muessen erst wieder in eine metrische Variable
+# umgewandelt werden und Mathe_Lk in einen dichotomen character
+
+Datensatz$`Int. Mathe` <- as.numeric(Datensatz$`Int. Mathe`)
+Datensatz$`Int. Prog.` <- as.numeric(Datensatz$`Int. Prog.`)
+Datensatz$`Mathe-LK` <- as.character(Datensatz$`Mathe-LK`)
+
+
+# Zunaechst wenden wir die Helferfuntion dich_as_met an, damit
+# man in d) mit den dichotomen Variablen rechnen kann
+
+dich_as_met <- function(x){
+  name <- unique(x)
+  result <- x == name[which.min(nchar(name))]
+  return(as.numeric(result))
+}
+
+
+
+met_dich <- function(x,y){
+  # x soll die metrische Variable sein
+  # y soll die dichotome Variable sein
+  if(!is.numeric(x)) stop("Der erste Vektor ist nicht metrisch")
+  if(length(levels(factor(y))) != 2) stop("Der zweite Vektor ist nicht dichotom")
+  y <- dich_as_met(y)
+  return(list("Korrelation" = cor(x,y), "Kovarianz" = cov(x,y), 
+              "Lineares Modell" = lm(y~x)))
+}
+
+
+met_dich(Datensatz$`Int. Mathe`, Datensatz$`Mathe-LK`)
+#$Korrelation
+#[1] 0.08875763
+
+#$Kovarianz
+#[1] 0.07919192
+
+#$`Lineares Modell`
+
+#Call:
+  #lm(formula = y ~ x)
+
+#Coefficients:
+#  (Intercept)    x  
+#0.58992      0.02187 
+  
+# Man kann erkennen, dass die Werte unabhängig voneinader sind, da die Korrelation
+# nahezu 0 ist. Demenstprechend besteht kein Zusammenhang zwischen dem Interesse an 
+# Mathe und ob man in der Schule Mathe-LK hatte.
+  
+
+met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
+#$Korrelation
+#[1] 0.03869798
+
+#$Kovarianz
+#[1] 0.03434343
+
+#$`Lineares Modell`
+
+#Call:
+#  lm(formula = y ~ x)
+
+#Coefficients:
+#  (Intercept)     x  
+#0.637350     0.009584 
+
+# Hier kann man sehen, dass es auch zwischen dem Interesse an Programmieren und dem  
+# Mathe-LK keinen wirklichen Zusammenhang gibt.
+
+# Interpretation: Der Mathe-LK in der Schule beeinflusst nicht das Interesse an
+# Mathe und Programmieren im Studium.
+
+
+
+# Wandle Variablen wieder in die korrekten Datentypen um
+Datensatz$`Int. Mathe` <- as.factor( Datensatz$`Int. Mathe`)
+Datensatz$`Int. Mathe` <- ordered( Datensatz$`Int. Mathe` , levels = c("1", "2", "3", "4", "5", "6", "7") )
+
+Datensatz$`Int. Prog.` <- as.factor( Datensatz$`Int. Prog.`)
+Datensatz$`Int. Prog.` <- ordered( Datensatz$`Int. Prog.` , levels = c("1", "2", "3", "4", "5", "6", "7") )
+
+Datensatz$`Mathe-LK` <- as.factor( Datensatz$`Mathe-LK`)
+
+
+
+
+
+
+# Funktion aus e):
 qkat <- function(y){
   if ( (is.numeric(y) == TRUE) || (is.ordered(y) == TRUE) )  {
     
@@ -235,7 +332,7 @@ qkat(Datensatz$`Int. Mathe`)
 #[1] 7 7 7 7 7 6 6 7 6 7 6 7 7 7 7 6 7 7 6 6 7 7 6 6 6 7 6
 
 
-# f) Funktion aus f):
+# Funktion aus f):
 visual <- function(x,i){
   p <- length(i)
   q <- sqrt(p)
