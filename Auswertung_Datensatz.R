@@ -285,7 +285,17 @@ met_dich(Datensatz$`Int. Mathe`, Datensatz$`Mathe-LK`)
 # Man kann erkennen, dass die Werte unabhängig voneinader sind, da die Korrelation
 # nahezu 0 ist. Demenstprechend besteht kein Zusammenhang zwischen dem Interesse an 
 # Mathe und ob man in der Schule Mathe-LK hatte.
-  
+
+
+# Regressionsgerade: 
+y <- dich_as_met(Datensatz$`Mathe-LK`)
+y
+
+plot( y ~ Datensatz$`Int. Mathe` )
+abline( 0.58992, 0.02187)
+
+
+
 
 met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
 #$Korrelation
@@ -308,6 +318,12 @@ met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
 
 # Interpretation: Der Mathe-LK in der Schule beeinflusst nicht das Interesse an
 # Mathe und Programmieren im Studium.
+
+
+# Regressionsgerade:
+plot( y ~ Datensatz$`Int. Prog.` )
+abline( 0.637350 , 0.009584)
+
 
 
 
