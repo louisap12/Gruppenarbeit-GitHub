@@ -282,7 +282,7 @@ met_dich(Datensatz$`Int. Mathe`, Datensatz$`Mathe-LK`)
 #  (Intercept)    x  
 #0.58992      0.02187 
   
-# Man kann erkennen, dass die Werte unabhängig voneinader sind, da die Korrelation
+# Man kann erkennen, dass die Werte unabhaengig voneinader sind, da die Korrelation
 # nahezu 0 ist. Demenstprechend besteht kein Zusammenhang zwischen dem Interesse an 
 # Mathe und ob man in der Schule Mathe-LK hatte.
 
