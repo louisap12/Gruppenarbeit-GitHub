@@ -142,6 +142,10 @@ sapply( Datensatz[ ,5:6], kat)
 unique( Datensatz$Studienfach)
 # [1] "Data Science" "Statistik"    "Informatik"   "Mathe"
 
+table( Datensatz$Studienfach)/length( Datensatz$Studienfach)
+# Data Science   Informatik        Mathe    Statistik 
+#        0.28         0.29         0.15         0.28 
+
 
 ds <- Datensatz[ Datensatz$Studienfach == "Data Science", ]
 st <- Datensatz[ Datensatz$Studienfach == "Statistik", ]
