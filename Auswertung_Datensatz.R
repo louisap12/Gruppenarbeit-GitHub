@@ -540,11 +540,12 @@ visual(Datensatz,3:6)
 
 #    - hoechsten Bew. Programmierungs-Interesse: Informatik, Data Science
 #    - niedrigsten Bew. Prog.-Interesse: Mathe, Statistik
+#    -> vgl. a), b)
 
 #   (ii) Mathe-LK:
 #    - haeufiger bei Mathe, Statistik 
 #    - ausgeglichen bei Data Science, Informatik
-
+#    -> vgl. a) (ii)
 
 ## Fazit: Es lassen sich nahezu keine Zusammenhaenge zwischen den verschiedenen Interessen oder den
 #         Interessen und dem Mathe-LK machen.
