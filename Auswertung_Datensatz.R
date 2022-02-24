@@ -282,7 +282,7 @@ met_dich(Datensatz$`Int. Mathe`, Datensatz$`Mathe-LK`)
 #  (Intercept)    x  
 #0.58992      0.02187 
   
-# Man kann erkennen, dass die Werte unabhaengig voneinader sind, da die Korrelation
+# Man kann erkennen, dass die Werte nahezu unabhaengig voneinader sind, da die Korrelation
 # nahezu 0 ist. Demenstprechend besteht kein Zusammenhang zwischen dem Interesse an 
 # Mathe und ob man in der Schule Mathe-LK hatte.
 
@@ -294,7 +294,8 @@ y
 plot( y ~ Datensatz$`Int. Mathe` )
 abline( 0.58992, 0.02187)
 
-
+# Da Mathe-LK eine dichotome Variable ist, ist die Regressionsgerade eher
+# unpassen und laesst sich nicht wirklich interpretieren.
 
 
 met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
@@ -324,6 +325,7 @@ met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
 plot( y ~ Datensatz$`Int. Prog.` )
 abline( 0.637350 , 0.009584)
 
+# Auch hier laesst sich analog zum Int.Mathe un Mathe-LK wenig aussagen.
 
 
 
