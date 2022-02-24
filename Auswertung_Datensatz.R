@@ -5,27 +5,7 @@ Datensatz <- read_csv("Datensatz.csv")
 Datensatz
 
 
-# Vorbereitung des Datensatzes:
-
-str(Datensatz)
-# Interesse in Mathe und in Programmieren muessen in an factor Objekt, welches eine Rangordnung unter
-# den levels hat, umgewandelt werden.
-# Die Variable Mathe-LK muss lediglich in ein factor Objekt umgewandelt werden.
-
-Datensatz$`Int. Mathe` <- as.factor( Datensatz$`Int. Mathe`)
-Datensatz$`Int. Mathe` <- ordered( Datensatz$`Int. Mathe` , levels = c("1", "2", "3", "4", "5", "6", "7") )
-
-Datensatz$`Int. Prog.` <- as.factor( Datensatz$`Int. Prog.`)
-Datensatz$`Int. Prog.` <- ordered( Datensatz$`Int. Prog.` , levels = c("1", "2", "3", "4", "5", "6", "7") )
-
-Datensatz$`Mathe-LK` <- as.factor( Datensatz$`Mathe-LK`)
-
-# Nun haben alle Variablen den korrekten Objekttyp:
-str(Datensatz)
-
-
-
-# Anwendung der in Aufgabe 2 erstellten Funktionen: -----------------------------------------------------
+# Anwendung der in Aufgabe 2 erstellten Funktionen:
 
 
 
@@ -70,6 +50,61 @@ sum_met(Datensatz$Alter)    # Das durchschnittliche Alter liegt bei 24.34 Jahren
 #            Jahren und unterschreiten/ueberschrieten das Alter von 19 bzw. 30 nicht.
 
 
+sum_met(Datensatz$`Int. Mathe`)   # Int.Prog wirs insgesamte etwas hoher bewerte als Int.Mathe.
+sum_met(Datensatz$`Int. Prog.`)
+
+
+
+sapply( list( Data_Science = ds$`Int. Mathe`, Statistik = st$`Int. Mathe`,
+              Informatik = inf$`Int. Mathe`, Mathe = ma$`Int. Mathe`) , sum_met)[1:4,]
+
+#                     Data_Science Statistik Informatik Mathe    
+# Arithmetische Mittel 4.178571     4.464286  3.275862   5        
+# Median               4            4.5       3          5        
+# Varianz              2.818783     4.850529  3.492611   1.285714 
+# Standardabweichung   1.678923     2.202392  1.868853   1.133893 
+
+# Im Studiengangvergleich liegt bei Mathe die im Mittel hoechste Bewertung vor, gefolgt von Statistik,
+# Data Science und Informatik.
+# Beim Studiengang Statistik liegt die goesste Standardabweichung vor, im gegensatz zur kleinsten im
+# Studiengang Mathe.
+
+
+
+sapply( list( Data_Science = ds$`Int. Prog.`, Statistik = st$`Int. Prog.`,
+              Informatik = inf$`Int. Prog.`, Mathe = ma$`Int. Prog.`) , sum_met)[1:4,]
+
+#                      Data_Science Statistik Informatik Mathe   
+# Arithmetische Mittel 4.321429     4.392857  5.172414   3.4     
+# Median               5            4.5       5          4       
+# Varianz              3.559524     3.43254   2.79064    3.971429
+# Standardabweichung   1.88667      1.852711  1.670521   1.992844
+
+# Im Studiengangvergleich liegt bei Informatik die hoechste Bewertung vor. Ledglich
+# bei Data Science leigt im Median eine gleichhoche Bewertung vor.
+# Danach folgt Statistik und Mathe. Die Standardabweichung ist bei Mathe am groessten und bei
+# Informatik am niedrigsten.
+
+
+
+
+# Weiterverarbeitung des Datensatzes:
+
+str(Datensatz)
+# Interesse in Mathe und in Programmieren muessen in an factor Objekt, welches eine Rangordnung unter
+# den levels hat, fuer einiger der folgenden Funktionen umgewandelt werden.
+# Die Variable Mathe-LK muss lediglich in ein factor Objekt umgewandelt werden.
+
+Datensatz$`Int. Mathe` <- as.factor( Datensatz$`Int. Mathe`)
+Datensatz$`Int. Mathe` <- ordered( Datensatz$`Int. Mathe` , levels = c("1", "2", "3", "4", "5", "6", "7") )
+
+Datensatz$`Int. Prog.` <- as.factor( Datensatz$`Int. Prog.`)
+Datensatz$`Int. Prog.` <- ordered( Datensatz$`Int. Prog.` , levels = c("1", "2", "3", "4", "5", "6", "7") )
+
+Datensatz$`Mathe-LK` <- as.factor( Datensatz$`Mathe-LK`)
+
+# Kontrolle:
+str(Datensatz)
 
 
 
