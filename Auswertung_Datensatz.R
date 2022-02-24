@@ -50,6 +50,9 @@ sum_met(Datensatz$Alter)    # Das durchschnittliche Alter liegt bei 24.34 Jahren
 #            Jahren und unterschreiten/ueberschrieten das Alter von 19 bzw. 30 nicht.
 
 
+
+# Im folgenden wird das Interesse zunaechst als eine quasi-intervall-skalierte Variable gesehen:
+
 sum_met(Datensatz$`Int. Mathe`)   # Int.Prog wirs insgesamte etwas hoher bewerte als Int.Mathe.
 sum_met(Datensatz$`Int. Prog.`)
 
@@ -503,53 +506,49 @@ visual(Datensatz,3:6)
 # Zusammmenfassung:
 ####################################################################################################
 
-# (1) Alter:
-#  Die Individuen des Datensatzes (Studenten) haben im Mittel (Median) ein Alter von 25
-#  Jahren und unterschreiten/ueberschrieten das Alter von 19 bzw. 30 nicht.
+### 1. Gesamtdatensatz:
 
-#  Das Alter ist nahzu normalverteilt um 25 Jahre. Lediglich im Bereich 26 bis 27 liegen weniger
-#  Beobachtungen, als im Bereich unter 25 Jahre.
+#   Allgemein: 
+#   (i) Alter:
+#    - Durchschnittliches Alter von 25 Jahren (Median)
+#    - nahezu Normalverteilung des Alters
+#    - Alter liegt zwischen 19 und 30 Jahren
+#    -> vgl. a)
 
-
-# (2) Interesse Programmierung und Mathe
-
-#  Der hoechste/niedrigste Modalwert bezueglich des Mathe Interesse weisen Statistik/Informatik
-#  Studierende auf.
-#  Der hoechste/niedrigste Modalwert bezueglich des Interesse am Programmieren weisen
-#  Data Science/Mathe Studierende auf.
-
-#  Es gibt keine nennenswerten Korrelationen zwischen den Variablen Int.Mathe und Int.Prog, sowie
-#  des Alters und beiden Interessen.
-
-#  Da bei Int.Prog mehr Bewertungsstufen im niedrigen Bereich liegen, muessen im mittleren 
-#  und oberen Bereich haeufiger die Stufen 5 bis 6 gewaehlt worden sein, als bei Int.Mathe.
-#  Bei Int.Mathe verteilen sich die  Bewertungsstufen besser auf die Kategorien niedrig,
-#  mittel und hoch.
-
-#  Bei der Visualisierung der Daten wird bestaerkt : Beim Mathe-
-#  Interesse sind die Beobachtungen deutlich gleichmaessiger verteilt als beim Programmierungs-
-#  Interesse. Ledglich die Bewertungen 1 und 6 kommen etwas weniger haeufig vor.
-#  Beim Programmierungs-Interesse ist eine Tendez zur Linksschiefe erkennbar.
-#  Es leigen mehr Beobachtungen in Bereich der hoeheren Bewertungsstufen.
+#   (ii) Studiengaenge:
+#    - Data Science, Informatik, Statistik nahezu gleich haeufig vertreten mit etwa knapp 30%
+#    - etwas weniger Mathe Studierende (etwa 15%)
+#    -> vgl. a)
 
 
+#   (iii) Interesse:
+#    - etwas mehr Interesse in Programmierung als in Mathe
+#    - Beim Mathe-Interesse verteilen sich die beobachteten Realisierungen mehr auf alle Bewertungs-
+#      stufen ( vgl. e) )
+#    - Beim Interesse in Programmieren ist eine Tendenz zur Linksschiefe erkennbar( vgl. e) )
+#    - nahezu kaum Zusammenhaenge zwischen Interesse in Mathe und in Programmieren, sowie 
+#      zwischen jeweils beiden Interessen und dem Besuch des Mathe-LKs( vgl. c) & d)  )
 
-# (3) Mathe-LK
+#   (iv) Mathe-LK:
+#    - etwa 68% haben Mathe-LK besucht, 32% nicht
 
-# In den Studienrichtungen Mathe und Statistik wird deutlich haeufiger der Mathe-LK besucht.
-# In den Studienrichtungen Informatik und Data Science ist das Verhaeltniss zu Mathe-LK
-# Besuchern und Nicht-Mathe-LK Besuchern eher ausgeglichen.
+### 2. Vergleich der Studiengaenge (bzgl. Interessen und Besuch des Mathe-LK)
 
-# Zwischen dem Interesse in Programmierung und Mathe und dem Besuch des Mathe LK besteht nahezu
-# kein Zusammenhang ( Kovarianz und Korrelation sind nahe bei Null).
+#   (i) Interessen:
+#    - hoechsten Bewertungen Mathe-Interesse: Mathe, Statistik
+#    - niedrigsten Bew. Mathe-Interesse: Informatik, Data Science
+
+#    - hoechsten Bew. Programmierungs-Interesse: Informatik, Data Science
+#    - niedrigsten Bew. Prog.-Interesse: Mathe, Statistik
+
+#   (ii) Mathe-LK:
+#    - haeufiger bei Mathe, Statistik 
+#    - ausgeglichen bei Data Science, Informatik
 
 
-
-# (4) Studiengaenge
-
-#  Bei den Studiengaengen sind Data Science,Statistik und Informatik nahezu gleich oft vertreten.
-#  Hingegen gibt es deutlich weniger Mathe Studenten ( etwa die Haelte vergleichen mit den obigen ).
-
-
+## Fazit: Es lassen sich nahezu keine Zusammenhaenge zwischen den verschiedenen Interessen oder den
+#         Interessen und dem Mathe-LK machen.
+#         Jedoch liegen deutliche Unterschiede bei Betrachtung der verschiedenen Studiengaenge bezueglich
+#         der verschiedenen Interessen vor.
 
 
