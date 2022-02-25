@@ -5,7 +5,7 @@ Datensatz <- read_csv("Datensatz.csv")
 Datensatz
 
 
-# Anwendung der in Aufgabe 2 erstellten Funktionen:
+# Anwendung der in Aufgabe 3 erstellten Funktionen:
 
 
 
@@ -270,6 +270,9 @@ kat_zsh(Datensatz$Alter, Datensatz$`Int. Prog.`)
 #$Korrelation
 #[1] 0.08056303
 
+
+# Man kann aus den Daten entnehmen, dass es weder einen erheblichen Zusammenhang zwischen dem Interesse am Programmieren und dem Interesse an Mathe gibt, noch zwischen dem
+# Alter und den jeweiligen Interessen.
 
 
 
