@@ -54,8 +54,23 @@ sum_met(Datensatz$Alter)    # Das durchschnittliche Alter liegt bei 24.34 Jahren
 # Im folgenden wird das Interesse zunaechst als eine quasi-intervall-skalierte Variable gesehen:
 
 sum_met(Datensatz$`Int. Mathe`)   # Int.Prog wirs insgesamte etwas hoher bewerte als Int.Mathe.
-sum_met(Datensatz$`Int. Prog.`)
+sum_met(Datensatz$`Int. Prog.`)   # vgl. Median von 4 bei Int.Mathe und Median von 5 bei Int.Prog.
 
+
+# Moegliche Studienfaecher ausfindig machen:
+unique( Datensatz$Studienfach)
+# [1] "Data Science" "Statistik"    "Informatik"   "Mathe"
+
+table( Datensatz$Studienfach)/length( Datensatz$Studienfach)
+# Data Science   Informatik        Mathe    Statistik 
+#        0.28         0.29         0.15         0.28 
+
+
+# Erstellung von Teildatensaetzen um Unterschiede zwischen den Studiengaengen herausfinden zu koennen
+ds <- Datensatz[ Datensatz$Studienfach == "Data Science", ]
+st <- Datensatz[ Datensatz$Studienfach == "Statistik", ]
+inf <- Datensatz[ Datensatz$Studienfach == "Informatik", ]
+ma <- Datensatz[ Datensatz$Studienfach == "Mathe", ]
 
 
 sapply( list( Data_Science = ds$`Int. Mathe`, Statistik = st$`Int. Mathe`,
@@ -112,6 +127,8 @@ str(Datensatz)
 
 
 
+
+
 # Funktion aus b) - Interesse an Mathe und Programmieren (i) (und Abfrage der Teinahme am Mathe-LK (ii))
 
 kat <- function(x){
@@ -141,20 +158,8 @@ sapply( Datensatz[ ,5:6], kat)
 # Maximum (7) aufweisen. D.h.: Es wurden alle Kategorien gewaehlt.
 # Kurzgesagt deuten die Ergebnisse auf ein hoeheres Interesse an Programmieren in der (Gesamt-)Gruppe hin.
 
-# Moegliche Studienfaecher ausfindig machen:
-unique( Datensatz$Studienfach)
-# [1] "Data Science" "Statistik"    "Informatik"   "Mathe"
 
-table( Datensatz$Studienfach)/length( Datensatz$Studienfach)
-# Data Science   Informatik        Mathe    Statistik 
-#        0.28         0.29         0.15         0.28 
-
-
-ds <- Datensatz[ Datensatz$Studienfach == "Data Science", ]
-st <- Datensatz[ Datensatz$Studienfach == "Statistik", ]
-inf <- Datensatz[ Datensatz$Studienfach == "Informatik", ]
-ma <- Datensatz[ Datensatz$Studienfach == "Mathe", ]
-
+# Erneuter Vergelich der Studiengaenge mithilfe der Teildatensaetze
 
 # Data Science
 sapply( ds[ ,5:6], kat)         # Beim Vergleich der Modalwerte ergibt sich:
@@ -333,8 +338,9 @@ met_dich(Datensatz$`Int. Mathe`, Datensatz$`Mathe-LK`)
 y <- dich_as_met(Datensatz$`Mathe-LK`)
 y
 
-plot( y ~ Datensatz$`Int. Mathe` )
-abline( 0.58992, 0.02187)
+plot( y ~ Datensatz$`Int. Mathe` , ylab = "Besuch des Mathe-LK", xlab = "Interesse in Mathe",
+      main = "Zusmmenhang: Besuch Mathe-LK und Interesse in Mathe")
+abline( 0.58992, 0.02187, col = "deepskyblue", lwd = 2)
 
 # Da Mathe-LK eine dichotome Variable ist, ist die Regressionsgerade eher
 # unpassen und laesst sich nicht wirklich interpretieren.
@@ -364,8 +370,9 @@ met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
 
 
 # Regressionsgerade:
-plot( y ~ Datensatz$`Int. Prog.` )
-abline( 0.637350 , 0.009584)
+plot( y ~ Datensatz$`Int. Prog.`, xlab = "Interesse in Programmierung", ylab = "Besuch des Mathe-LK",
+      main = "Zusammenhang: Besuch Mathe-LK und Interesse in Programmierung")
+abline( 0.637350 , 0.009584, col = "deepskyblue", lwd = 2)
 
 # Auch hier laesst sich analog zum Int.Mathe un Mathe-LK wenig aussagen.
 
