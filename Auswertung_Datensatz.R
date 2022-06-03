@@ -5,27 +5,7 @@ Datensatz <- read_csv("Datensatz.csv")
 Datensatz
 
 
-# Vorbereitung des Datensatzes:
-
-str(Datensatz)
-# Interesse in Mathe und in Programmieren muessen in an factor Objekt, welches eine Rangordnung unter
-# den levels hat, umgewandelt werden.
-# Die Variable Mathe-LK muss lediglich in ein factor Objekt umgewandelt werden.
-
-Datensatz$`Int. Mathe` <- as.factor( Datensatz$`Int. Mathe`)
-Datensatz$`Int. Mathe` <- ordered( Datensatz$`Int. Mathe` , levels = c("1", "2", "3", "4", "5", "6", "7") )
-
-Datensatz$`Int. Prog.` <- as.factor( Datensatz$`Int. Prog.`)
-Datensatz$`Int. Prog.` <- ordered( Datensatz$`Int. Prog.` , levels = c("1", "2", "3", "4", "5", "6", "7") )
-
-Datensatz$`Mathe-LK` <- as.factor( Datensatz$`Mathe-LK`)
-
-# Nun haben alle Variablen den korrekten Objekttyp:
-str(Datensatz)
-
-
-
-# Anwendung der in Aufgabe 2 erstellten Funktionen: -----------------------------------------------------
+# Anwendung der in Aufgabe 3 erstellten Funktionen:
 
 
 
@@ -71,6 +51,81 @@ sum_met(Datensatz$Alter)    # Das durchschnittliche Alter liegt bei 24.34 Jahren
 
 
 
+# Im folgenden wird das Interesse zunaechst als eine quasi-intervall-skalierte Variable gesehen:
+
+sum_met(Datensatz$`Int. Mathe`)   # Int.Prog wirs insgesamte etwas hoher bewerte als Int.Mathe.
+sum_met(Datensatz$`Int. Prog.`)   # vgl. Median von 4 bei Int.Mathe und Median von 5 bei Int.Prog.
+
+
+# Moegliche Studienfaecher ausfindig machen:
+unique( Datensatz$Studienfach)
+# [1] "Data Science" "Statistik"    "Informatik"   "Mathe"
+
+table( Datensatz$Studienfach)/length( Datensatz$Studienfach)
+# Data Science   Informatik        Mathe    Statistik 
+#        0.28         0.29         0.15         0.28 
+
+
+# Erstellung von Teildatensaetzen um Unterschiede zwischen den Studiengaengen herausfinden zu koennen
+ds <- Datensatz[ Datensatz$Studienfach == "Data Science", ]
+st <- Datensatz[ Datensatz$Studienfach == "Statistik", ]
+inf <- Datensatz[ Datensatz$Studienfach == "Informatik", ]
+ma <- Datensatz[ Datensatz$Studienfach == "Mathe", ]
+
+
+sapply( list( Data_Science = ds$`Int. Mathe`, Statistik = st$`Int. Mathe`,
+              Informatik = inf$`Int. Mathe`, Mathe = ma$`Int. Mathe`) , sum_met)[1:4,]
+
+#                     Data_Science Statistik Informatik Mathe    
+# Arithmetische Mittel 4.178571     4.464286  3.275862   5        
+# Median               4            4.5       3          5        
+# Varianz              2.818783     4.850529  3.492611   1.285714 
+# Standardabweichung   1.678923     2.202392  1.868853   1.133893 
+
+# Im Studiengangvergleich liegt bei Mathe die im Mittel hoechste Bewertung vor, gefolgt von Statistik,
+# Data Science und Informatik.
+# Beim Studiengang Statistik liegt die goesste Standardabweichung vor, im gegensatz zur kleinsten im
+# Studiengang Mathe.
+
+
+
+sapply( list( Data_Science = ds$`Int. Prog.`, Statistik = st$`Int. Prog.`,
+              Informatik = inf$`Int. Prog.`, Mathe = ma$`Int. Prog.`) , sum_met)[1:4,]
+
+#                      Data_Science Statistik Informatik Mathe   
+# Arithmetische Mittel 4.321429     4.392857  5.172414   3.4     
+# Median               5            4.5       5          4       
+# Varianz              3.559524     3.43254   2.79064    3.971429
+# Standardabweichung   1.88667      1.852711  1.670521   1.992844
+
+# Im Studiengangvergleich liegt bei Informatik die hoechste Bewertung vor. Ledglich
+# bei Data Science leigt im Median eine gleichhoche Bewertung vor.
+# Danach folgt Statistik und Mathe. Die Standardabweichung ist bei Mathe am groessten und bei
+# Informatik am niedrigsten.
+
+
+
+
+# Weiterverarbeitung des Datensatzes:
+
+str(Datensatz)
+# Interesse in Mathe und in Programmieren muessen in an factor Objekt, welches eine Rangordnung unter
+# den levels hat, fuer einiger der folgenden Funktionen umgewandelt werden.
+# Die Variable Mathe-LK muss lediglich in ein factor Objekt umgewandelt werden.
+
+Datensatz$`Int. Mathe` <- as.factor( Datensatz$`Int. Mathe`)
+Datensatz$`Int. Mathe` <- ordered( Datensatz$`Int. Mathe` , levels = c("1", "2", "3", "4", "5", "6", "7") )
+
+Datensatz$`Int. Prog.` <- as.factor( Datensatz$`Int. Prog.`)
+Datensatz$`Int. Prog.` <- ordered( Datensatz$`Int. Prog.` , levels = c("1", "2", "3", "4", "5", "6", "7") )
+
+Datensatz$`Mathe-LK` <- as.factor( Datensatz$`Mathe-LK`)
+
+# Kontrolle:
+str(Datensatz)
+
+
+
 
 
 
@@ -103,16 +158,8 @@ sapply( Datensatz[ ,5:6], kat)
 # Maximum (7) aufweisen. D.h.: Es wurden alle Kategorien gewaehlt.
 # Kurzgesagt deuten die Ergebnisse auf ein hoeheres Interesse an Programmieren in der (Gesamt-)Gruppe hin.
 
-# Moegliche Studienfaecher ausfindig machen:
-unique( Datensatz$Studienfach)
-# [1] "Data Science" "Statistik"    "Informatik"   "Mathe"
 
-
-ds <- Datensatz[ Datensatz$Studienfach == "Data Science", ]
-st <- Datensatz[ Datensatz$Studienfach == "Statistik", ]
-inf <- Datensatz[ Datensatz$Studienfach == "Informatik", ]
-ma <- Datensatz[ Datensatz$Studienfach == "Mathe", ]
-
+# Erneuter Vergelich der Studiengaenge mithilfe der Teildatensaetze
 
 # Data Science
 sapply( ds[ ,5:6], kat)         # Beim Vergleich der Modalwerte ergibt sich:
@@ -229,6 +276,9 @@ kat_zsh(Datensatz$Alter, Datensatz$`Int. Prog.`)
 #[1] 0.08056303
 
 
+# Man kann aus den Daten entnehmen, dass es weder einen erheblichen Zusammenhang zwischen dem Interesse am Programmieren und dem Interesse an Mathe gibt, noch zwischen dem
+# Alter und den jeweiligen Interessen.
+
 
 
 
@@ -282,10 +332,22 @@ met_dich(Datensatz$`Int. Mathe`, Datensatz$`Mathe-LK`)
 #  (Intercept)    x  
 #0.58992      0.02187 
   
-# Man kann erkennen, dass die Werte unabhängig voneinader sind, da die Korrelation
+# Man kann erkennen, dass die Werte nahezu unabhaengig voneinader sind, da die Korrelation
 # nahezu 0 ist. Demenstprechend besteht kein Zusammenhang zwischen dem Interesse an 
 # Mathe und ob man in der Schule Mathe-LK hatte.
-  
+
+
+# Regressionsgerade: 
+y <- dich_as_met(Datensatz$`Mathe-LK`)
+y
+
+plot( y ~ Datensatz$`Int. Mathe` , ylab = "Besuch des Mathe-LK", xlab = "Interesse in Mathe",
+      main = "Zusmmenhang: Besuch Mathe-LK und Interesse in Mathe")
+abline( 0.58992, 0.02187, col = "deepskyblue", lwd = 2)
+
+# Da Mathe-LK eine dichotome Variable ist, ist die Regressionsgerade eher
+# unpassen und laesst sich nicht wirklich interpretieren.
+
 
 met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
 #$Korrelation
@@ -308,6 +370,14 @@ met_dich(Datensatz$`Int. Prog.`, Datensatz$`Mathe-LK`)
 
 # Interpretation: Der Mathe-LK in der Schule beeinflusst nicht das Interesse an
 # Mathe und Programmieren im Studium.
+
+
+# Regressionsgerade:
+plot( y ~ Datensatz$`Int. Prog.`, xlab = "Interesse in Programmierung", ylab = "Besuch des Mathe-LK",
+      main = "Zusammenhang: Besuch Mathe-LK und Interesse in Programmierung")
+abline( 0.637350 , 0.009584, col = "deepskyblue", lwd = 2)
+
+# Auch hier laesst sich analog zum Int.Mathe un Mathe-LK wenig aussagen.
 
 
 
@@ -367,6 +437,35 @@ qkat(Datensatz$`Int. Mathe`)
 #[1] 7 7 7 7 7 6 6 7 6 7 6 7 7 7 7 6 7 7 6 6 7 7 6 6 6 7 6
 
 
+# Im nierdrigen Bereich liegen: 1,2,3
+# Im mittleren Bereich liegen: 4,5
+# Im hohen Bereich liegen: 6,7
+
+
+qkat(Datensatz$`Int. Prog.`)
+
+# $`niedrig (<= 1/3-Quantil)`
+# [1] 1 4 2 1 3 3 1 4 3 2 4 2 2 1 1 3 1 4 2 3 3 2 4 1 4 3 4 1 1 3 4 3 4 4 4 2 4 3 3 4 1 1 4 2
+
+# $`mittel (1/3-Quantil < & <= 2/3-Quantil)`
+# [1] 6 6 6 6 6 5 6 5 5 6 5 6 5 5 5 6 5 5 6 5 6 5 5 5 6 5 6 5 6 5 5 5 5 5 6 5 5 6 6 6 6
+
+# $`hoch (2/3-Quantil <)`
+# [1] 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
+
+# Im nierdrigen Bereich liegen: 1,2,3,4
+# Im mittleren Bereich liegen: 5,6
+# Im hohen Bereich liegen: 7
+
+
+# Fazit: (1) Da bei Int.Prog mehr Bewertungsstufen im niedrigen Bereich liegen, muessen im mittleren 
+#            und oberen Bereich haeufiger die Sufen 5 bis 6 gewaehlt worden sein, als bei Int.Mathe.
+#        (2) Bei Int.Mathe verteilen sich die  Bewertungsstufen besser auf die Kategorien niedrig,
+#            mittel und hoch.
+
+
+
+
 # Funktion aus f):
 visual <- function(x,i){
   p <- length(i)
@@ -382,3 +481,85 @@ visual <- function(x,i){
 }
 
 visual(Datensatz,3:6)
+
+# Das Alter ist nahzu normalverteilt um 25 Jahre. Lediglich im Bereich 26 bis 27 liegen weniger
+# Beobachtungen, als im Bereich unter 25 Jahre.
+
+
+# Bei den Studiengaengen sind Data Science,Statistik und Informatik nahezu gleich oft vertreten.
+# Hingegen gibt es deutlich weniger Mathe Studenten ( etwa die Haelte vergleichen mit den obigen ).
+
+
+# Hier bestaetigen sich bei der Verteilung der Bewertungsstufen die Erkenntnisse aus e). Beim Mathe-
+# Interesse sind die Beobachtungen deutlich gleichmaessiger verteilt als beim Programmierungs-
+# Interesse. Ledglich die Bewertungen 1 und 6 kommen etwas weniger haeufig vor.
+
+# Beim Programmierungs-Interesse ist eine Tendez zur Linksschiefe erkennbar.
+# Es leigen mehr Beobachtungen in Bereich der hoeheren Bewertungsstufen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####################################################################################################
+# Zusammmenfassung:
+####################################################################################################
+
+### 1. Gesamtdatensatz:
+
+#   Allgemein: 
+#   (i) Alter:
+#    - Durchschnittliches Alter von 25 Jahren (Median)
+#    - nahezu Normalverteilung des Alters
+#    - Alter liegt zwischen 19 und 30 Jahren
+#    -> vgl. a)
+
+#   (ii) Studiengaenge:
+#    - Data Science, Informatik, Statistik nahezu gleich haeufig vertreten mit etwa knapp 30%
+#    - etwas weniger Mathe Studierende (etwa 15%)
+#    -> vgl. a)
+
+
+#   (iii) Interesse:
+#    - etwas mehr Interesse in Programmierung als in Mathe
+#    - Beim Mathe-Interesse verteilen sich die beobachteten Realisierungen mehr auf alle Bewertungs-
+#      stufen ( vgl. e) )
+#    - Beim Interesse in Programmieren ist eine Tendenz zur Linksschiefe erkennbar( vgl. e) )
+#    - nahezu kaum Zusammenhaenge zwischen Interesse in Mathe und in Programmieren, sowie 
+#      zwischen jeweils beiden Interessen und dem Besuch des Mathe-LKs( vgl. c) & d)  )
+
+#   (iv) Mathe-LK:
+#    - etwa 68% haben Mathe-LK besucht, 32% nicht
+
+### 2. Vergleich der Studiengaenge (bzgl. Interessen und Besuch des Mathe-LK)
+
+#   (i) Interessen:
+#    - hoechsten Bewertungen Mathe-Interesse: Mathe, Statistik
+#    - niedrigsten Bew. Mathe-Interesse: Informatik, Data Science
+
+#    - hoechsten Bew. Programmierungs-Interesse: Informatik, Data Science
+#    - niedrigsten Bew. Prog.-Interesse: Mathe, Statistik
+#    -> vgl. a), b)
+
+#   (ii) Mathe-LK:
+#    - haeufiger bei Mathe, Statistik 
+#    - ausgeglichen bei Data Science, Informatik
+#    -> vgl. a) (ii)
+
+## Fazit: Es lassen sich nahezu keine Zusammenhaenge zwischen den verschiedenen Interessen oder den
+#         Interessen und dem Mathe-LK machen.
+#         Jedoch liegen deutliche Unterschiede bei Betrachtung der verschiedenen Studiengaenge bezueglich
+#         der verschiedenen Interessen vor.
+
+
